@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammed · Cybersecurity Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #16161f;
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(255,255,255,0.14);
+    --text: #f0f0f5;
+    --muted: #7a7a8a;
+    --accent: #4f7cff;
+    --accent2: #22d4a6;
+    --accent3: #ff6b6b;
+    --font: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw; height: 64px;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent2);
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* SECTIONS */
+  section { padding: 100px 5vw; max-width: 1100px; margin: 0 auto; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: 120px;
+  }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent2);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 28px; height: 1px;
+    background: var(--accent2);
+  }
+  h1 {
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .name-accent { color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #3a65e8; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-hover);
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.3); background: var(--surface); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ABOUT */
+  #about { padding-top: 80px; }
+  .section-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-meta {
+    display: flex; flex-direction: column; gap: 1rem;
+    margin-top: 2rem;
+  }
+  .meta-item {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .meta-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+    flex-shrink: 0;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+  .skill-card {
+    background: var(--surface);
+    padding: 2rem;
+    transition: background 0.2s;
+  }
+  .skill-card:hover { background: var(--surface2); }
+  .skill-icon {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    background: var(--surface2);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem;
+    border: 1px solid var(--border);
+    font-size: 18px;
+  }
+  .skill-title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .skill-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .skill-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 1rem;
+  }
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(79, 124, 255, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(79, 124, 255, 0.2);
+  }
+  .tag.green {
+    background: rgba(34, 212, 166, 0.1);
+    color: var(--accent2);
+    border-color: rgba(34, 212, 166, 0.2);
+  }
+  .tag.red {
+    background: rgba(255, 107, 107, 0.1);
+    color: var(--accent3);
+    border-color: rgba(255, 107, 107, 0.2);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .project-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  .project-name {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .project-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--surface2);
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  .project-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .project-tech {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .project-link {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    margin-top: 1.2rem;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 10px; }
+  .arrow { font-size: 14px; }
+
+  /* THESIS HIGHLIGHT */
+  .thesis-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .thesis-card::after {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 250px; height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,124,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .thesis-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .thesis-label::before {
+    content: '';
+    width: 16px; height: 1px;
+    background: var(--accent2);
+  }
+  .thesis-title {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+    max-width: 620px;
+  }
+  .thesis-desc {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.75;
+  }
+  .thesis-meta {
+    display: flex; flex-wrap: wrap; gap: 1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .thesis-meta-item { font-size: 12px; color: var(--muted); }
+  .thesis-meta-item strong { color: var(--text); font-weight: 500; display: block; margin-bottom: 2px; }
+
+  /* CONTACT */
+  #contact { padding-bottom: 120px; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  .contact-text {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .contact-links {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 14px;
+    transition: color 0.2s;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .contact-link:hover { color: var(--text); border-color: var(--border-hover); }
+  .contact-link-icon {
+    width: 32px; height: 32px;
+    border-radius: 6px;
+    background: var(--surface2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .contact-link-label { font-size: 11px; color: var(--muted); }
+  .contact-link-value { color: var(--text); font-weight: 500; font-size: 13px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 5vw;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .footer-text {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .footer-dot { color: var(--accent2); }
+
+  /* SCROLL ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* CURSOR DOT */
+  .cursor-dot {
+    width: 6px; height: 6px;
+    background: var(--accent2);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s;
+    transform: translate(-50%, -50%);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-stats { gap: 2rem; }
+    .nav-links { display: none; }
+    nav { padding: 0 6vw; }
+    section { padding: 80px 6vw; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursor"></div>
+
+<nav>
+  <span class="nav-logo">~ / mohammed</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-tag">Available for opportunities</div>
+  <h1>
+    Mohammed<br>
+    <span class="name-accent">Al-Altaf</span>
+  </h1>
+  <p class="hero-sub">
+    Junior Penetration Tester & Security Analyst. Cybersecurity student at Noroff University College, Kristiansand — specializing in digital forensics, network security, and DNS traffic analysis.
+  </p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects →</a>
+    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div>
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Projects Built</div>
+    </div>
+    <div>
+      <div class="stat-num">530M+</div>
+      <div class="stat-label">Packets Analyzed</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="fade-in">
+  <div class="section-tag">// 01. About</div>
+  <h2>Security-first mindset,<br>research-driven approach</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a cybersecurity student completing my <strong>Bachelor's degree at Noroff University College</strong> (2023–2026) in Kristiansand, Norway. My focus areas are digital forensics, penetration testing, and network security research.</p>
+      <p>My thesis investigates <strong>DNS traffic patterns in Internet Background Radiation (IBR)</strong> using the Cloud Telescope dataset across 26 AWS regions — working with over 530 million packets to identify scanning behavior and threat patterns.</p>
+      <p>Beyond academics, I build real-world tools: from <strong>encrypted chat applications</strong> to SOC automation scripts and full-stack security dashboards.</p>
+    </div>
+    <div>
+      <div class="about-meta">
+        <div class="meta-item"><div class="meta-dot"></div>Noroff University College · Kristiansand, Norway</div>
+        <div class="meta-item"><div class="meta-dot"></div>BSc Cybersecurity · 2023–2026</div>
+        <div class="meta-item"><div class="meta-dot"></div>Junior Pentester & Security Analyst</div>
+        <div class="meta-item"><div class="meta-dot"></div>Digital Forensics · Network Security · Pentesting</div>
+        <div class="meta-item"><div class="meta-dot"></div>TryHackMe · CTF Enthusiast</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="fade-in">
+  <div class="section-tag">// 02. Skills</div>
+  <h2>Technical expertise</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">🔍</div>
+      <div class="skill-title">Digital Forensics</div>
+      <div class="skill-desc">Memory forensics, PCAP analysis, and disk imaging on Windows environments. Familiar with incident timelines and artifact recovery.</div>
+      <div class="skill-tags">
+        <span class="tag">Volatility 3</span>
+        <span class="tag">Wireshark</span>
+        <span class="tag">Autopsy</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">⚔️</div>
+      <div class="skill-title">Penetration Testing</div>
+      <div class="skill-desc">Exploitation of known CVEs, buffer overflow development, post-exploitation techniques, and Active Directory enumeration.</div>
+      <div class="skill-tags">
+        <span class="tag red">Metasploit</span>
+        <span class="tag red">Burp Suite</span>
+        <span class="tag red">nmap</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-title">Network Security</div>
+      <div class="skill-desc">DNS security research, IBR analysis, TCP SYN floods, ARP spoofing, DNSSEC, and traffic classification at scale.</div>
+      <div class="skill-tags">
+        <span class="tag green">DNS Analysis</span>
+        <span class="tag green">IBR</span>
+        <span class="tag green">Firewall</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🛠️</div>
+      <div class="skill-title">Development</div>
+      <div class="skill-desc">Building security tools, encrypted applications, and automation scripts. Full-stack capable with a security-first perspective.</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Flutter</span>
+        <span class="tag">Bash</span>
+        <span class="tag">Flask</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="fade-in">
+  <div class="section-tag">// 03. Projects</div>
+  <h2>Selected work</h2>
+
+  <!-- Thesis highlight -->
+  <div class="thesis-card">
+    <div class="thesis-label">Bachelor's Thesis · 2026</div>
+    <div class="thesis-title">DNS Traffic Analysis in Internet Background Radiation Using the Cloud Telescope Dataset</div>
+    <div class="thesis-desc">
+      Analyzing over 530 million packets across 26 AWS regions (October 2023 – March 2024) to identify DNS-based scanning patterns, amplification attack signatures, and threat actor behavior in unsolicited background traffic.
+    </div>
+    <div class="thesis-meta">
+      <div class="thesis-meta-item"><strong>Dataset</strong>Cloud Telescope</div>
+      <div class="thesis-meta-item"><strong>Regions</strong>26 AWS Regions</div>
+      <div class="thesis-meta-item"><strong>Packets</strong>~530M+</div>
+      <div class="thesis-meta-item"><strong>Period</strong>Oct 2023 – Mar 2024</div>
+      <div class="thesis-meta-item"><strong>Focus</strong>IBR · DNS · Threat Analysis</div>
+    </div>
+  </div>
+
+  <div class="projects-grid" style="margin-top:2rem;">
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-name">ReaN Chat</div>
+        <div class="project-year">2024–25</div>
+      </div>
+      <div class="project-desc">End-to-end encrypted messaging app with PIN-protected messages, real-time communication via Socket.IO, and a Flask/Firebase backend. Built with security-first architecture.</div>
+      <div class="project-tech">
+        <span class="tag green">Flutter</span>
+        <span class="tag green">Firebase</span>
+        <span class="tag green">Socket.IO</span>
+        <span class="tag green">Flask</span>
+      </div>
+      <a class="project-link" href="#">View on GitHub <span class="arrow">→</span></a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-name">SOC Automation Script</div>
+        <div class="project-year">2024</div>
+      </div>
+      <div class="project-desc">600+ line Bash script for CND operations covering 24 tasks: GPG verification, Apache log analysis, threat list fetching, SSH uploads, filesystem security auditing, and automated reporting.</div>
+      <div class="project-tech">
+        <span class="tag">Bash</span>
+        <span class="tag">GPG</span>
+        <span class="tag">Apache</span>
+        <span class="tag">SSH</span>
+      </div>
+      <a class="project-link" href="#">View on GitHub <span class="arrow">→</span></a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-name">ReaN RAG System</div>
+        <div class="project-year">2024</div>
+      </div>
+      <div class="project-desc">RAG-based academic document Q&A tool using Streamlit, LangChain, and OpenAI. Supports PDF ingestion and semantic search for cybersecurity research documents.</div>
+      <div class="project-tech">
+        <span class="tag">Python</span>
+        <span class="tag">LangChain</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">OpenAI</span>
+      </div>
+      <a class="project-link" href="#">View on GitHub <span class="arrow">→</span></a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-name">Crypto Trading Bot</div>
+        <div class="project-year">2024</div>
+      </div>
+      <div class="project-desc">Multi-exchange crypto trading bot with Python Flask backend, interactive HTML dashboard, and CCXT integration for real-time market data and automated strategy execution.</div>
+      <div class="project-tech">
+        <span class="tag red">Python</span>
+        <span class="tag red">Flask</span>
+        <span class="tag red">CCXT</span>
+        <span class="tag red">JavaScript</span>
+      </div>
+      <a class="project-link" href="#">View on GitHub <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="fade-in">
+  <div class="section-tag">// 04. Contact</div>
+  <h2>Let's connect</h2>
+  <div class="contact-grid">
+    <div>
+      <p class="contact-text">
+        I'm currently open to internship opportunities, research collaborations, and cybersecurity projects. Based in Kristiansand, Norway — available remotely worldwide.
+      </p>
+      <a href="mailto:your@email.com" class="btn btn-primary" style="display:inline-flex;">Send a message →</a>
+    </div>
+    <div class="contact-links">
+      <a href="https://github.com/yourusername" class="contact-link" target="_blank">
+        <div class="contact-link-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        </div>
+        <div>
+          <div class="contact-link-label">GitHub</div>
+          <div class="contact-link-value">github.com/yourusername</div>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/yourusername" class="contact-link" target="_blank">
+        <div class="contact-link-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </div>
+        <div>
+          <div class="contact-link-label">LinkedIn</div>
+          <div class="contact-link-value">linkedin.com/in/yourusername</div>
+        </div>
+      </a>
+      <a href="mailto:your@email.com" class="contact-link">
+        <div class="contact-link-icon">✉</div>
+        <div>
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-value">your@email.com</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-text">© 2025 Mohammed <span class="footer-dot">·</span> Built with HTML/CSS/JS</span>
+  <span class="footer-text">Kristiansand, Norway 🇳🇴</span>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  // Scroll animations
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
