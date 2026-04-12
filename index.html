@@ -39,15 +39,22 @@ body {
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 6vw; height: 60px;
+  padding: 0 6vw; height: 56px;
   background: rgba(8,8,14,0.88);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
 }
 .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--accent2); letter-spacing: 0.04em; }
-.nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover { color: var(--text); }
+.nav-socials {
+  display: flex; align-items: center; gap: 1.2rem;
+}
+.nav-socials a {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 12px; color: var(--accent2);
+  text-decoration: none; transition: all 0.25s; letter-spacing: 0.02em;
+}
+.nav-socials a:hover { color: #fff; text-shadow: 0 0 12px rgba(31,212,160,0.5); }
+.nav-socials .nav-sep { width: 1px; height: 16px; background: rgba(31,212,160,0.25); }
 
 /* MAIN LAYOUT */
 .main-layout {
@@ -124,51 +131,58 @@ h1 {
 
 /* PROJECTS (RIGHT) */
 .projects-side {
-  width: 380px;
+  width: 340px;
   flex-shrink: 0;
   display: flex; flex-direction: column; justify-content: center;
   padding: 60px 0;
   overflow-y: auto;
   max-height: 100vh;
   position: sticky;
-  top: 60px;
+  top: 56px;
 }
 
 .projects-grid {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.7rem;
 }
 
 .project-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.2rem 1.4rem;
+  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
   cursor: pointer;
-  transform: translateY(40px) scale(0.95);
   opacity: 0;
-  transition: border-color 0.25s;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
 .project-card::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--accent2) 50%, transparent 100%);
   transform: scaleX(0); transform-origin: left;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s ease;
 }
-.project-card:hover { border-color: var(--border-h); }
+.project-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(79,124,255,0.06) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.3s;
+  pointer-events: none;
+}
+.project-card:hover { border-color: rgba(79,124,255,0.25); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(79,124,255,0.08); }
 .project-card:hover::before { transform: scaleX(1); }
+.project-card:hover::after { opacity: 1; }
 
 .card-num {
-  font-family: var(--mono); font-size: 10px; color: var(--muted);
-  margin-bottom: 0.6rem;
+  font-family: var(--mono); font-size: 9px; color: var(--muted);
+  margin-bottom: 0.35rem;
   display: flex; justify-content: space-between; align-items: center;
 }
 .card-status {
-  font-size: 10px; padding: 2px 8px; border-radius: 100px;
+  font-size: 9px; padding: 1px 7px; border-radius: 100px;
   background: rgba(31,212,160,0.08); border: 1px solid rgba(31,212,160,0.2);
   color: var(--accent2);
 }
@@ -176,12 +190,12 @@ h1 {
   background: rgba(255,180,50,0.08); border-color: rgba(255,180,50,0.2);
   color: #ffb432;
 }
-.card-title { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
-.card-desc { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 0.8rem; }
-.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.card-title { font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
+.card-desc { font-size: 11px; color: var(--muted); line-height: 1.5; margin-bottom: 0.5rem; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
 .tag {
-  font-family: var(--mono); font-size: 11px;
-  padding: 3px 9px; border-radius: 4px;
+  font-family: var(--mono); font-size: 9px;
+  padding: 2px 7px; border-radius: 4px;
   background: rgba(79,124,255,0.08); color: var(--accent);
   border: 1px solid rgba(79,124,255,0.18);
 }
@@ -189,22 +203,12 @@ h1 {
 .tag.y { background: rgba(255,180,50,0.08); color: #ffb432; border-color: rgba(255,180,50,0.18); }
 
 .card-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 12px; color: var(--accent); text-decoration: none;
-  margin-top: 1.2rem; transition: gap 0.2s;
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; color: var(--accent); text-decoration: none;
+  margin-top: 0.6rem; transition: all 0.25s;
 }
-.card-link:hover { gap: 10px; }
+.card-link:hover { gap: 9px; color: var(--accent2); }
 
-/* CONTACT (in hero) */
-.hero-contact { display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center; margin-top: 2.5rem; }
-.contact-social {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 16px; border-radius: 8px;
-  border: 1px solid var(--border-h); background: var(--surface2);
-  color: var(--muted); text-decoration: none;
-  font-size: 13px; transition: all 0.2s;
-}
-.contact-social:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
 
 /* FOOTER */
 footer {
@@ -230,7 +234,11 @@ body::after {
   .hero-stats { flex-direction: column; }
   .stat { border-right: none; border-bottom: 1px solid var(--border); }
   .stat:last-child { border-bottom: none; }
-  nav .nav-links { display: none; }
+  .nav-socials a span { display: none; }
+  .nav-socials { gap: 0.8rem; }
+}
+@media (max-width: 600px) {
+  .nav-socials .email-text { display: none; }
 }
 </style>
 </head>
@@ -238,8 +246,17 @@ body::after {
 
 <nav>
   <span class="nav-logo">~/mohammed-altanib</span>
-  <ul class="nav-links">
-  </ul>
+  <div class="nav-socials">
+    <a href="mailto:mohammedaltanib2@gmail.com">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>
+      mohammedaltanib2@gmail.com
+    </a>
+    <div class="nav-sep"></div>
+    <a href="https://github.com/MohammedAltanib" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+  </div>
 </nav>
 
 <div class="main-layout">
@@ -253,16 +270,6 @@ body::after {
     <div class="hero-stats" id="stats">
       <div class="stat"><div class="stat-num">3 mo.</div><div class="stat-label">SOC Analyst Intern<br>Netsecurity AS</div></div>
       <div class="stat"><div class="stat-num">3 mo.</div><div class="stat-label">Security Project<br>Swipload AS</div></div>
-    </div>
-    <div class="hero-contact">
-      <a href="mailto:mohammedaltanib2@gmail.com" class="contact-social">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>
-        mohammedaltanib2@gmail.com
-      </a>
-      <a href="https://github.com/MohammedAltanib" class="contact-social" target="_blank">
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-        GitHub
-      </a>
     </div>
   </section>
 
@@ -348,45 +355,39 @@ anime({
   delay: 500
 });
 
-// ── Cards spring animation on scroll ──────────────────────────
-const cardIds = ['#c1','#c2','#c3','#c4'];
+// ── Cards staggered cascade entrance ──────────────────────────
+const cards = document.querySelectorAll('.project-card');
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const idx = cardIds.indexOf('#' + entry.target.id);
-      anime({
-        targets: entry.target,
-        translateY: [60, 0],
-        scale: [0.88, 1],
-        opacity: [0, 1],
-        delay: idx * 90,
-        duration: 900,
-        // Spring: mass=1, stiffness=120, damping=9, velocity=2
-        easing: 'spring(1, 120, 9, 2)'
-      });
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
-
-cardIds.forEach(id => {
-  const el = document.querySelector(id);
-  if (el) observer.observe(el);
-});
-
-
-// ── Card hover tilt ────────────────────────────────────────────
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width  - 0.5;
-    const y = (e.clientY - r.top)  / r.height - 0.5;
+cards.forEach((card, i) => {
+  setTimeout(() => {
     anime({
       targets: card,
-      rotateY: x * 6,
-      rotateX: -y * 6,
-      duration: 200,
+      translateX: [80, 0],
+      translateY: [20, 0],
+      scale: [0.85, 1],
+      opacity: [0, 1],
+      duration: 800,
+      easing: 'spring(1, 90, 12, 0)'
+    });
+  }, 600 + i * 150);
+});
+
+// ── Card mouse glow + tilt ────────────────────────────────────
+cards.forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width) * 100;
+    const y = ((e.clientY - r.top) / r.height) * 100;
+    card.style.setProperty('--mx', x + '%');
+    card.style.setProperty('--my', y + '%');
+
+    const rx = (e.clientX - r.left) / r.width  - 0.5;
+    const ry = (e.clientY - r.top)  / r.height - 0.5;
+    anime({
+      targets: card,
+      rotateY: rx * 8,
+      rotateX: -ry * 8,
+      duration: 150,
       easing: 'easeOutQuad'
     });
   });
@@ -394,8 +395,8 @@ document.querySelectorAll('.project-card').forEach(card => {
     anime({
       targets: card,
       rotateY: 0, rotateX: 0,
-      duration: 600,
-      easing: 'spring(1, 80, 12, 0)'
+      duration: 500,
+      easing: 'spring(1, 80, 14, 0)'
     });
   });
 });
