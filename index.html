@@ -120,21 +120,6 @@ h1 {
 .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border-h); }
 .btn-outline:hover { border-color: rgba(255,255,255,0.25); background: var(--surface); }
 
-/* STATS */
-.hero-stats {
-  display: flex; gap: 0; margin-top: 4rem;
-  border: 1px solid var(--border); border-radius: 12px;
-  overflow: hidden; max-width: 600px;
-  opacity: 0;
-}
-.stat {
-  flex: 1; padding: 1.4rem 1.6rem;
-  border-right: 1px solid var(--border);
-  background: var(--surface);
-}
-.stat:last-child { border-right: none; }
-.stat-num { font-size: 1.6rem; font-weight: 600; color: var(--text); line-height: 1; }
-.stat-label { font-size: 11px; color: var(--muted); margin-top: 5px; letter-spacing: 0.04em; line-height: 1.4; }
 
 /* PROJECTS (RIGHT) */
 .projects-side {
@@ -228,9 +213,6 @@ body::after {
 @media (max-width: 900px) {
   .main-layout { flex-direction: column; gap: 2rem; padding: 80px 5vw 40px; }
   .projects-side { width: 100%; position: static; max-height: none; }
-  .hero-stats { flex-direction: column; }
-  .stat { border-right: none; border-bottom: 1px solid var(--border); }
-  .stat:last-child { border-bottom: none; }
   .nav-socials a span { display: none; }
   .nav-socials { gap: 0.8rem; }
 }
@@ -268,11 +250,7 @@ body::after {
     <div class="hero-eyebrow">Junior Security Analyst · Pentester</div>
     <div class="grad-badge"><div class="grad-dot"></div> BSc Cybersecurity · Noroff University · 2026</div>
     <h1>Mohammed<br><span class="name-blue">Altanib</span></h1>
-    <p class="hero-sub">Cybersecurity graduate specializing in network security and penetration testing. Based in Kristiansand, Norway.</p>
-    <div class="hero-stats" id="stats">
-      <div class="stat"><div class="stat-num">3 mo.</div><div class="stat-label">SOC Analyst Intern<br>Netsecurity AS</div></div>
-      <div class="stat"><div class="stat-num">3 mo.</div><div class="stat-label">Security Project<br>Swipload AS</div></div>
-    </div>
+    <p class="hero-sub">Bachelorstudent i cybersikkerhet ved Noroff University (2023–2026), med praktisk erfaring innen risikovurdering, revisjon av adgangskontrollsystemer og sårbarhetstesting. Erfaring med cybersikkerhetsoperasjonssentre og analyse av sikkerhetsvarsler. Fullt forpliktet til kontinuerlig faglig utvikling og svært tilpasningsdyktig til nye teknologier og cybersikkerhetsrammeverk.</p>
   </section>
 
   <!-- RIGHT: PROJECTS -->
@@ -304,27 +282,25 @@ body::after {
       </div>
 
       <div class="project-card" id="c3">
-        <div class="card-num"><span>03</span><span class="card-status">Completed</span></div>
-        <div class="card-title">DNS Traffic Analysis · Thesis</div>
-        <div class="card-desc">Bachelor's thesis analyzing DNS patterns in Internet Background Radiation. 530M+ packets across 26 AWS regions.</div>
+        <div class="card-num"><span>03</span><span class="card-status">3 Months</span></div>
+        <div class="card-title">Netsecurity AS · SOC Analyst Intern</div>
+        <div class="card-desc">Overvåket og analyserte sikkerhetsvarsler, støttet hendelsesundersøkelser og bidro til trusseldeteksjon og responsoperasjoner.</div>
         <div class="card-tags">
-          <span class="tag y">Python</span>
-          <span class="tag y">Wireshark</span>
-          <span class="tag y">DNS</span>
+          <span class="tag y">SOC</span>
+          <span class="tag y">SIEM</span>
+          <span class="tag y">Threat Detection</span>
         </div>
-        <a href="#" class="card-link">Read more →</a>
       </div>
 
       <div class="project-card" id="c4">
-        <div class="card-num"><span>04</span><span class="card-status">Completed</span></div>
-        <div class="card-title">SOC Automation Script</div>
-        <div class="card-desc">600+ line Bash script covering 24 security operations tasks: GPG verification, log analysis, and auditing.</div>
+        <div class="card-num"><span>04</span><span class="card-status">4 Months</span></div>
+        <div class="card-title">Swipload AS · Security Project</div>
+        <div class="card-desc">Utførte risikovurderinger og tilgangskontrollrevisjoner. Utformet samsvarsrammeverk for NIS2/NIST CSF-standarder og utførte penetrasjonstesting.</div>
         <div class="card-tags">
-          <span class="tag">Bash</span>
-          <span class="tag">GPG</span>
-          <span class="tag">SOC</span>
+          <span class="tag">NIS2</span>
+          <span class="tag">NIST CSF</span>
+          <span class="tag">Pentesting</span>
         </div>
-        <a href="#" class="card-link">GitHub →</a>
       </div>
 
     </div>
@@ -355,14 +331,6 @@ anime({
   delay: 100
 });
 
-anime({
-  targets: '#stats',
-  opacity: [0, 1],
-  translateY: [20, 0],
-  duration: 800,
-  easing: 'easeOutExpo',
-  delay: 500
-});
 
 // ── Cards staggered cascade entrance ──────────────────────────
 const cards = document.querySelectorAll('.project-card');
