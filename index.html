@@ -229,62 +229,91 @@ body::after {
 
 /* ── BLOG MODE (skjult — aktiveres i HTML under) ─────────── */
 .blog-wrap {
-  max-width: 720px;
+  max-width: 680px;
   margin: 0 auto;
-  padding: 120px 6vw 80px;
+  padding: 110px 6vw 100px;
+  font-family: var(--mono);
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: var(--text);
 }
+.blog-wrap a { color: var(--accent); text-decoration: none; }
+.blog-wrap a:hover { color: var(--accent2); text-decoration: underline; }
 .blog-wrap .blog-view { display: none; }
 .blog-wrap #home { display: block; }
 .blog-wrap .post:target { display: block; }
 .blog-wrap:has(.post:target) #home { display: none; }
 
 .blog-name {
-  font-size: clamp(2rem, 4.5vw, 3.4rem);
-  font-weight: 600; letter-spacing: -0.035em; line-height: 1.02;
-  margin-bottom: 1.2rem;
+  font-family: var(--mono);
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 0.9rem;
+  letter-spacing: 0;
 }
 .blog-bio {
-  font-size: 1.05rem; color: var(--muted);
-  line-height: 1.7; margin-bottom: 3rem; max-width: 560px;
+  color: var(--muted);
+  margin-bottom: 2.8rem;
+  font-size: 14px;
 }
-.blog-list { display: flex; flex-direction: column; gap: 0.6rem; }
-.blog-item {
-  display: flex; gap: 1.2rem; align-items: flex-start;
-  padding: 1.3rem 1.5rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  text-decoration: none;
-  transition: all 0.25s;
+.blog-section {
+  font-size: 0.95rem;
+  color: var(--accent2);
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.02em;
 }
-.blog-item:hover {
-  border-color: rgba(79,124,255,0.25);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(79,124,255,0.08);
+.posts { list-style: none; padding: 0; margin: 0; }
+.posts li {
+  display: flex; gap: 1.2rem;
+  padding: 0.35rem 0;
+  font-size: 14px;
 }
-.blog-num {
-  font-family: var(--mono); font-size: 11px;
-  color: var(--accent2); padding-top: 4px; min-width: 24px;
+.post-date {
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
-.blog-meta h3 {
-  font-size: 1.05rem; font-weight: 600;
-  color: var(--text); margin-bottom: 0.3rem;
-}
-.blog-meta p { font-size: 0.88rem; color: var(--muted); line-height: 1.55; }
 
 .post h1 {
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  margin: 1.2rem 0 2rem;
-  letter-spacing: -0.02em;
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text);
+  margin: 1.2rem 0 0.5rem;
+  letter-spacing: 0;
+  line-height: 1.35;
 }
-.post-body { color: var(--muted); font-size: 1rem; line-height: 1.8; }
+.post-meta {
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+  margin-bottom: 1.8rem;
+}
+.post-sep {
+  border: none;
+  text-align: center;
+  color: var(--muted);
+  margin: 1.8rem 0;
+  font-size: 14px;
+}
+.post-sep::before { content: '* * *'; letter-spacing: 0.5em; }
+.post-body { color: var(--text); font-size: 14.5px; }
 .post-body p { margin-bottom: 1.2rem; }
-.back {
-  font-family: var(--mono); font-size: 12px;
-  color: var(--accent2); text-decoration: none;
-  letter-spacing: 0.04em;
+.post-body code {
+  background: var(--surface);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--accent2);
 }
-.back:hover { color: #fff; }
+.back {
+  font-size: 13px;
+  color: var(--accent2) !important;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
 </style>
 </head>
 <body>
@@ -381,88 +410,72 @@ body::after {
 
 <!-- ============================================================
      BLOG MODE (skjult)
-     For å aktivere bloggen:
-       1) Kommenter ut eller slett <div class="main-layout">...</div> over.
-       2) Fjern linjen "<!-- BLOG-START" og linjen "BLOG-END -->" under.
-     For å legge til nye artikler: kopier en <article class="post">-blokk
-     og gi den ny id (f.eks. post-5), legg til en <a href="#post-5"> i
-     listen inne i #home.
+     AKTIVERE: kommenter ut "main-layout"-blokken over, og slett
+     første og siste linje av blokken under (HTML-kommentar-
+     taggene som omringer innholdet).
+     NYE ARTIKLER: kopier en "post"-artikkel, gi ny id
+     (f.eks. post-5), legg til en rad i "posts"-listen i #home.
 ============================================================ -->
 
-<!-- BLOG-START
-<div class="blog-wrap">
+<!--
+<main class="blog-wrap">
 
   <section id="home" class="blog-view">
-    <h1 class="blog-name">Mohammed<br><span class="name-blue">Altanib</span></h1>
+    <h1 class="blog-name">Mohammed Altanib</h1>
     <p class="blog-bio">Cybersecurity-student ved Noroff. SOC Analyst og pentester. Her skriver jeg om sikkerhet, prosjekter og ting jeg lærer underveis.</p>
 
-    <div class="blog-list">
-      <a href="#post-1" class="blog-item">
-        <span class="blog-num">01</span>
-        <div class="blog-meta">
-          <h3>Tittel på artikkel én</h3>
-          <p>Kort introduksjon som forteller hva artikkelen handler om.</p>
-        </div>
-      </a>
-      <a href="#post-2" class="blog-item">
-        <span class="blog-num">02</span>
-        <div class="blog-meta">
-          <h3>Tittel på artikkel to</h3>
-          <p>Kort introduksjon som forteller hva artikkelen handler om.</p>
-        </div>
-      </a>
-      <a href="#post-3" class="blog-item">
-        <span class="blog-num">03</span>
-        <div class="blog-meta">
-          <h3>Tittel på artikkel tre</h3>
-          <p>Kort introduksjon som forteller hva artikkelen handler om.</p>
-        </div>
-      </a>
-      <a href="#post-4" class="blog-item">
-        <span class="blog-num">04</span>
-        <div class="blog-meta">
-          <h3>Tittel på artikkel fire</h3>
-          <p>Kort introduksjon som forteller hva artikkelen handler om.</p>
-        </div>
-      </a>
-    </div>
+    <h2 class="blog-section">posts</h2>
+    <ul class="posts">
+      <li><span class="post-date">2026-04-21</span> <a href="#post-1">Tittel på artikkel én</a></li>
+      <li><span class="post-date">2026-04-10</span> <a href="#post-2">Tittel på artikkel to</a></li>
+      <li><span class="post-date">2026-03-28</span> <a href="#post-3">Tittel på artikkel tre</a></li>
+      <li><span class="post-date">2026-03-15</span> <a href="#post-4">Tittel på artikkel fire</a></li>
+    </ul>
   </section>
 
   <article id="post-1" class="blog-view post">
-    <a href="#home" class="back">← Tilbake</a>
+    <a href="#home" class="back">← tilbake</a>
     <h1>Tittel på artikkel én</h1>
+    <p class="post-meta"><em>Publisert 2026-04-21</em></p>
+    <hr class="post-sep">
     <div class="post-body">
-      <p>Her skriver du innholdet i den første artikkelen. Du kan bruke vanlig HTML som avsnitt, lister, bilder og kode.</p>
+      <p>Her skriver du innholdet i den første artikkelen. Du kan bruke vanlig HTML for avsnitt, lister, bilder og kode.</p>
       <p>Bytt ut denne teksten med din egen når du er klar.</p>
     </div>
   </article>
 
   <article id="post-2" class="blog-view post">
-    <a href="#home" class="back">← Tilbake</a>
+    <a href="#home" class="back">← tilbake</a>
     <h1>Tittel på artikkel to</h1>
+    <p class="post-meta"><em>Publisert 2026-04-10</em></p>
+    <hr class="post-sep">
     <div class="post-body">
       <p>Skriv innholdet her.</p>
     </div>
   </article>
 
   <article id="post-3" class="blog-view post">
-    <a href="#home" class="back">← Tilbake</a>
+    <a href="#home" class="back">← tilbake</a>
     <h1>Tittel på artikkel tre</h1>
+    <p class="post-meta"><em>Publisert 2026-03-28</em></p>
+    <hr class="post-sep">
     <div class="post-body">
       <p>Skriv innholdet her.</p>
     </div>
   </article>
 
   <article id="post-4" class="blog-view post">
-    <a href="#home" class="back">← Tilbake</a>
+    <a href="#home" class="back">← tilbake</a>
     <h1>Tittel på artikkel fire</h1>
+    <p class="post-meta"><em>Publisert 2026-03-15</em></p>
+    <hr class="post-sep">
     <div class="post-body">
       <p>Skriv innholdet her.</p>
     </div>
   </article>
 
-</div>
-BLOG-END -->
+</main>
+-->
 
 
 <script>
