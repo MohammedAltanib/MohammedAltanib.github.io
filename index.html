@@ -338,7 +338,8 @@ body::after {
   </div>
 </nav>
 
-<div class="main-layout">
+<!-- PORTFOLIO MODE (skjult — fjern style="display:none" for å vise igjen) -->
+<div class="main-layout" style="display:none">
 
   <!-- LEFT: HERO -->
   <section id="hero">
@@ -409,15 +410,12 @@ body::after {
 
 
 <!-- ============================================================
-     BLOG MODE (skjult)
-     AKTIVERE: kommenter ut "main-layout"-blokken over, og slett
-     første og siste linje av blokken under (HTML-kommentar-
-     taggene som omringer innholdet).
+     BLOG MODE (aktiv)
      NYE ARTIKLER: kopier en "post"-artikkel, gi ny id
      (f.eks. post-5), legg til en rad i "posts"-listen i #home.
+     For å skjule bloggen: legg style="display:none" på <main class="blog-wrap">
 ============================================================ -->
 
-<!--
 <main class="blog-wrap">
 
   <section id="home" class="blog-view">
@@ -475,7 +473,6 @@ body::after {
   </article>
 
 </main>
--->
 
 
 <script>
