@@ -226,6 +226,65 @@ body::after {
 @media (max-width: 600px) {
   .nav-socials .email-text { display: none; }
 }
+
+/* ── BLOG MODE (skjult — aktiveres i HTML under) ─────────── */
+.blog-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 120px 6vw 80px;
+}
+.blog-wrap .blog-view { display: none; }
+.blog-wrap #home { display: block; }
+.blog-wrap .post:target { display: block; }
+.blog-wrap:has(.post:target) #home { display: none; }
+
+.blog-name {
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 600; letter-spacing: -0.035em; line-height: 1.02;
+  margin-bottom: 1.2rem;
+}
+.blog-bio {
+  font-size: 1.05rem; color: var(--muted);
+  line-height: 1.7; margin-bottom: 3rem; max-width: 560px;
+}
+.blog-list { display: flex; flex-direction: column; gap: 0.6rem; }
+.blog-item {
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  padding: 1.3rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.blog-item:hover {
+  border-color: rgba(79,124,255,0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(79,124,255,0.08);
+}
+.blog-num {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--accent2); padding-top: 4px; min-width: 24px;
+}
+.blog-meta h3 {
+  font-size: 1.05rem; font-weight: 600;
+  color: var(--text); margin-bottom: 0.3rem;
+}
+.blog-meta p { font-size: 0.88rem; color: var(--muted); line-height: 1.55; }
+
+.post h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin: 1.2rem 0 2rem;
+  letter-spacing: -0.02em;
+}
+.post-body { color: var(--muted); font-size: 1rem; line-height: 1.8; }
+.post-body p { margin-bottom: 1.2rem; }
+.back {
+  font-family: var(--mono); font-size: 12px;
+  color: var(--accent2); text-decoration: none;
+  letter-spacing: 0.04em;
+}
+.back:hover { color: #fff; }
 </style>
 </head>
 <body>
@@ -318,6 +377,92 @@ body::after {
   </aside>
 
 </div>
+
+
+<!-- ============================================================
+     BLOG MODE (skjult)
+     For å aktivere bloggen:
+       1) Kommenter ut eller slett <div class="main-layout">...</div> over.
+       2) Fjern linjen "<!-- BLOG-START" og linjen "BLOG-END -->" under.
+     For å legge til nye artikler: kopier en <article class="post">-blokk
+     og gi den ny id (f.eks. post-5), legg til en <a href="#post-5"> i
+     listen inne i #home.
+============================================================ -->
+
+<!-- BLOG-START
+<div class="blog-wrap">
+
+  <section id="home" class="blog-view">
+    <h1 class="blog-name">Mohammed<br><span class="name-blue">Altanib</span></h1>
+    <p class="blog-bio">Cybersecurity-student ved Noroff. SOC Analyst og pentester. Her skriver jeg om sikkerhet, prosjekter og ting jeg lærer underveis.</p>
+
+    <div class="blog-list">
+      <a href="#post-1" class="blog-item">
+        <span class="blog-num">01</span>
+        <div class="blog-meta">
+          <h3>Tittel på artikkel én</h3>
+          <p>Kort introduksjon som forteller hva artikkelen handler om.</p>
+        </div>
+      </a>
+      <a href="#post-2" class="blog-item">
+        <span class="blog-num">02</span>
+        <div class="blog-meta">
+          <h3>Tittel på artikkel to</h3>
+          <p>Kort introduksjon som forteller hva artikkelen handler om.</p>
+        </div>
+      </a>
+      <a href="#post-3" class="blog-item">
+        <span class="blog-num">03</span>
+        <div class="blog-meta">
+          <h3>Tittel på artikkel tre</h3>
+          <p>Kort introduksjon som forteller hva artikkelen handler om.</p>
+        </div>
+      </a>
+      <a href="#post-4" class="blog-item">
+        <span class="blog-num">04</span>
+        <div class="blog-meta">
+          <h3>Tittel på artikkel fire</h3>
+          <p>Kort introduksjon som forteller hva artikkelen handler om.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <article id="post-1" class="blog-view post">
+    <a href="#home" class="back">← Tilbake</a>
+    <h1>Tittel på artikkel én</h1>
+    <div class="post-body">
+      <p>Her skriver du innholdet i den første artikkelen. Du kan bruke vanlig HTML som avsnitt, lister, bilder og kode.</p>
+      <p>Bytt ut denne teksten med din egen når du er klar.</p>
+    </div>
+  </article>
+
+  <article id="post-2" class="blog-view post">
+    <a href="#home" class="back">← Tilbake</a>
+    <h1>Tittel på artikkel to</h1>
+    <div class="post-body">
+      <p>Skriv innholdet her.</p>
+    </div>
+  </article>
+
+  <article id="post-3" class="blog-view post">
+    <a href="#home" class="back">← Tilbake</a>
+    <h1>Tittel på artikkel tre</h1>
+    <div class="post-body">
+      <p>Skriv innholdet her.</p>
+    </div>
+  </article>
+
+  <article id="post-4" class="blog-view post">
+    <a href="#home" class="back">← Tilbake</a>
+    <h1>Tittel på artikkel fire</h1>
+    <div class="post-body">
+      <p>Skriv innholdet her.</p>
+    </div>
+  </article>
+
+</div>
+BLOG-END -->
 
 
 <script>
